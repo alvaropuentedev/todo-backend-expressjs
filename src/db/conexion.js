@@ -1,13 +1,17 @@
 const Pool = require('pg').Pool
 
-
+const DB_USER = process.env.DB_USER
+const DB_PASS = process.env.DB_PASS
+const DB_HOST = process.env.DB_HOST
+const DB_NAME = process.env.DB_NAME
+const DB_PORT = process.env.DB_PORT
 
 const pool = new Pool({
-  user: 'fl0user',
-  host: 'ep-sweet-recipe-27598555.eu-central-1.aws.neon.tech',
-  database: 'todo',
-  password: 'OSQIKNsEro03',
-  port: 5432,
+  user: DB_USER,
+  host: DB_HOST,
+  database: DB_NAME,
+  password: DB_PASS,
+  port: DB_PORT,
   ssl: {
     sslmode: 'require'
   }
@@ -16,16 +20,3 @@ const pool = new Pool({
 module.exports = {
     pool,
   };
-
-// const getItems = (request, response) => {
-//     pool.query('SELECT description FROM todo_items', (error, results) => {
-//       if (error) {
-//         throw error
-//       }
-//       response.status(200).json(results.rows)
-//     })
-//   }
-  
-//   module.exports = {
-//     getItems,
-//   };
