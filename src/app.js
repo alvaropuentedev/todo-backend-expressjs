@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const app = express()
 app.use(cors({
-    origin: 'https://todo-frontend-green.vercel.app/',
+    origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type,Authorization',
   }));
