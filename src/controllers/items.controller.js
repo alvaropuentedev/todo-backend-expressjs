@@ -2,7 +2,7 @@ const { pool } = require('../db/conexion')
 
 
 const getItems = (request, response) => {
-    pool.query('SELECT * FROM todo_items', (error, results) => {
+    pool.query('SELECT * FROM todo.items', (error, results) => {
       if (error) {
         throw error
       }
@@ -13,7 +13,7 @@ const getItems = (request, response) => {
 const getItemById = (request, response) => {
     const id_item = parseInt(request.params.id)
 
-    pool.query('SELECT * FROM todo_items WHERE id_item = $1', [id_item], (error, results) => {
+    pool.query('SELECT * FROM todo.items WHERE id_item = $1', [id_item], (error, results) => {
     if (error) {
         throw error
     }
@@ -24,7 +24,7 @@ const getItemById = (request, response) => {
 const createItem = (request, response) => {
   const { description } = request.body
 
-  pool.query('INSERT INTO todo_items (description) VALUES ($1)', [description], (error, results) => {
+  pool.query('INSERT INTO todo.items (description) VALUES ($1)', [description], (error, results) => {
     if (error) {
       throw error
     }
@@ -35,7 +35,7 @@ const createItem = (request, response) => {
 const deleteItem = (request, response) => {
   const id_item = parseInt(request.params.id)
 
-  pool.query('DELETE FROM todo_items WHERE id_item = $1', [id_item], (error, results) => {
+  pool.query('DELETE FROM todo.items WHERE id_item = $1', [id_item], (error, results) => {
     if (error) {
       throw error
     }
@@ -47,7 +47,7 @@ const updateItem = (request, response) => {
   const id_item = parseInt(request.params.id)
   const { description } = request.body
 
-  pool.query('UPDATE todo_items SET description = $1 WHERE id_item = $2', [description, id_item],
+  pool.query('UPDATE todo.items SET description = $1 WHERE id_item = $2', [description, id_item],
     (error, results) => {
       if (error) {
         throw error
